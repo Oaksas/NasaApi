@@ -6,52 +6,52 @@ const data = document.getElementById('data');
 const search = document.getElementById('search');
 const searchBtn = document.getElementById('searchBtn');
 
+// searchBtn.addEventListener('click', ()=>{
+//     console.log("what is you name")
+// })
+
 searchBtn.addEventListener('click',loadDataNew);
 
 async function sendRequest(){
     let api_key = "weAlGOG143bhhKcNAnzlIo64MUoJwLy9GcD17J9K";
     let queryStr = search.value.trim();
-
     let request = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${queryStr}`);
-    let data= await  request.json();
+    let data =  await request.json();
     let d = data.collection.items;
     return d;
 }
-function loadDataNew() {
 
+function loadDataNew() {
     sendRequest().then(
         function(posts) {
         //iterate over each post [100 posts]
         let output = " ";
-    
         posts.forEach(x => {
-output += `  
-<div class="col-1"></div>
-
-<div class="col-lg-3 col-md-6 col-sm-12 ">
-<div class="card" style="width: 18rem;">
-  <img src="${x.links[0].href}" class="card-img-top" alt="...">
-  <div class="card-body">
-      <h5 class="card-title">${x.data[0].title}</h5>
-      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
-          Description
-        </a>
-        <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
-          ${x.data[0].description}
-              </div>
-        
+            output += `  
+                <div class="col-1"></div>
+                <div class="col-lg-3 col-md-6 col-sm-12 ">
+                    <div class="card" style="width: 18rem;">
+                        <img src="${x.links[0].href}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">${x.data[0].title}</h5>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
+                        Description
+                        </a>
+                        <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
+                        ${x.data[0].description}
                         </div>
+                        </div>
+                    </div>
+                </div>`
 
-  </div>
-</div>
+            });
 
-
-        `
-
-
-            
-            console.log(x);
-
+            data.innerHTML = output;
+      })
+        .catch(function(err) {
+            console.log(err);
+        });
+    }
             
 //             output += `
 //             <div class="col-6">
@@ -67,15 +67,7 @@ output += `
 //               </div>
 //         </div>    
 // `
-        });
-
-        data.innerHTML = output;
-  })
-    .catch(function(err) {
-        console.log(err);
-    });
-
-}
+  
 
 
 // function load_fromPlaceHolder() {
