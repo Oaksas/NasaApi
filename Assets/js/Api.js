@@ -27,7 +27,23 @@ function loadDataNew() {
         //iterate over each post [100 posts]
         let output = " ";
         posts.forEach(x => {
-            output += `  
+            output += ` 
+            <div class="row mt-4 pb-3" >
+                <div class="col-lg-3 col-md-12 ">
+                    <div class="card" style="width: 18rem;">
+                        <img src="${x.links[0].href}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">${x.data[0].title}</h5>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
+                        Description
+                        </a>
+                        <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
+                        ${x.data[0].description}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-1"></div>
                 <div class="col-lg-3 col-md-6 col-sm-12 ">
                     <div class="card" style="width: 18rem;">
@@ -42,7 +58,12 @@ function loadDataNew() {
                         </div>
                         </div>
                     </div>
-                </div>`
+                </div>
+                </div>
+                
+                
+                
+                `
 
             });
 
