@@ -60,8 +60,13 @@ function loadDataNew() {
                     </div>
                 </div>
                 </div>
+                
+                
+                
                 `
+
             });
+
             data.innerHTML = output;
       })
         .catch(function(err) {
