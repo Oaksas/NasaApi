@@ -1,0 +1,16 @@
+body{
+    background-image: url("/Assets/Video/space2.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+nav{
+margin-bottom: 10%;
+position: fixed;
+top: 0;
+}
+ #footer{
+     background-color: rgba(30, 66, 77, 0.5);
+     color: wheat;
+ }

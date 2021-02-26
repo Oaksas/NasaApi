@@ -19,23 +19,66 @@ function loadDataNew() {
         //iterate over each post [100 posts]
         let output = " ";
         posts.forEach(x => {
-            console.log(x);
+output += `   <div class="row mt-4" >
+          
+<div class="col-3">
+<div class="card" style="width: 18rem;">
+    <img src="${x.links[0].href}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">${x.data[0].title}</h5>
+      <p class="card-text">${x.data[0].description}.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
+  <div class="col-1"></div>
+  
+            <div class="col-3">
+              <div class="card" style="width: 18rem;">
+                  <img src="${x.links[0].href}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">${x.data[0].title}</h5>
+                    <p class="card-text">${x.data[0].description}.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+            </div>
+  
+            <div class="col-1"></div>
 
-            
-            output += `
-            <div class="col-6">
+            <div class="col-3">
             <div class="card" style="width: 18rem;">
+                <img src="${x.links[0].href}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <img src=" ${x.links[0].href}">
-                  <h2 class="card-title">${x.data[0].title}</h2>
-
-                  <h5 class="card-title">${x.data[0].description}</h5>
-
+                  <h5 class="card-title">${x.data[0].title}</h5>
+                  <p class="card-text">${x.data[0].description}.</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
-        </div>    
-`
+          </div>
+  
+            
+        </div>`
+
+
+            
+            console.log(x);
+
+            
+//             output += `
+//             <div class="col-6">
+//             <div class="card" style="width: 18rem;">
+//                 <div class="card-body">
+//                   <img src=" ${x.links[0].href}">
+//                   <h2 class="card-title">${x.data[0].title}</h2>
+
+//                   <h5 class="card-title">${x.data[0].description}</h5>
+
+//                   <a href="#" class="btn btn-primary">Go somewhere</a>
+//                 </div>
+//               </div>
+//         </div>    
+// `
         });
 
         data.innerHTML = output;
