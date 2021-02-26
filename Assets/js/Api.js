@@ -3,62 +3,50 @@ const titleView = document.getElementById("titleView")
 const descriptionView = document.getElementById("descriptionView")
 const data = document.getElementById('data');
 
-loadDataNew();
+const search = document.getElementById('search');
+const searchBtn = document.getElementById('searchBtn');
+
+searchBtn.addEventListener('click',loadDataNew);
 
 async function sendRequest(){
     let api_key = "weAlGOG143bhhKcNAnzlIo64MUoJwLy9GcD17J9K";
-    let request = await fetch("https://images-api.nasa.gov/search?media_type=image&q=mars");
+    let queryStr = search.value.trim();
+
+    let request = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${queryStr}`);
     let data= await  request.json();
     let d = data.collection.items;
     return d;
 }
 function loadDataNew() {
-    
+
     sendRequest().then(
         function(posts) {
         //iterate over each post [100 posts]
         let output = " ";
+    
         posts.forEach(x => {
-output += `   <div class="row mt-4" >
-          
-<div class="col-3">
+output += `  
+<div class="col-1"></div>
+
+<div class="col-lg-3 col-md-6 col-sm-12 ">
 <div class="card" style="width: 18rem;">
-    <img src="${x.links[0].href}" class="card-img-top" alt="...">
-    <div class="card-body">
+  <img src="${x.links[0].href}" class="card-img-top" alt="...">
+  <div class="card-body">
       <h5 class="card-title">${x.data[0].title}</h5>
-      <p class="card-text">${x.data[0].description}.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
+          Description
+        </a>
+        <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
+          ${x.data[0].description}
+              </div>
+        
+                        </div>
+
   </div>
 </div>
-  <div class="col-1"></div>
-  
-            <div class="col-3">
-              <div class="card" style="width: 18rem;">
-                  <img src="${x.links[0].href}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">${x.data[0].title}</h5>
-                    <p class="card-text">${x.data[0].description}.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-            </div>
-  
-            <div class="col-1"></div>
 
-            <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="${x.links[0].href}" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">${x.data[0].title}</h5>
-                  <p class="card-text">${x.data[0].description}.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
-          </div>
-  
-            
-        </div>`
+
+        `
 
 
             
