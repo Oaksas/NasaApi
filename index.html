@@ -37,46 +37,46 @@
 </nav>
 
   <div class="container" id="data">
-  <div class="row mt-4" >
-    
-      <div class="col-lg-3 col-md-12 ">
-        <div class="card" style="width: 18rem;">
-          <img src="${x.links[0].href}" class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">${x.data[0].title}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
-                  Description
-                </a>
-                <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
-                  ${x.data[0].description}
+      <div class="row mt-4" >
+        <!-- the first colmmn -->
+          <div class="col-lg-3 col-md-12 ">
+              <div class="card" style="width: 18rem;">
+                  <img src="${x.links[0].href}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h5 class="card-title">${x.data[0].title}</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
+                      Description
+                      </a>
+                      <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
+                      ${x.data[0].description}
                       </div>
                 
-                                </div>
+                  </div>
+              </div>
+         </div>
 
-          </div>
-      </div>
+      <!-- for the second column -->
       <div class="col-1"></div>
-      
-      <div class="col-lg-3 col-md-12 ">
-          <div class="card" style="width: 18rem;">
-            <img src="${x.links[0].href}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">${x.data[0].title}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
-                    Description
-                  </a>
-                  <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
-                    ${x.data[0].description}
-                        </div>
-                  
-                                  </div>
-
-            </div>
+          <div class="col-lg-3 col-md-12 ">
+              <div class="card" style="width: 18rem;">
+                  <img src="${x.links[0].href}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h5 class="card-title">${x.data[0].title}</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
+                      Description
+                      </a>
+                      <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
+                        ${x.data[0].description}
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
-        </div>
+  </div>
 
+  <!-- the footer part -->
 <div class="mt-5 pt-5 pb-5 footer">
     <div class="container" id="data">
       <div class="row">
