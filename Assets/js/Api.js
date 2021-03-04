@@ -17,6 +17,7 @@ async function sendRequest(){
     let queryStr = search.value.trim();
     let request = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${queryStr}`);
     let data =  await request.json();
+    console.log(data)
     let d = data.collection.items;
     return d;
 }
@@ -37,10 +38,32 @@ function loadDataNew() {
                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
                         Description
                         </a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong${x.data[0].nasa_id}">
+                            Description
+                        </button>
                         <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
                         ${x.data[0].description}
                         </div>
                         </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="exampleModalLong${x.data[0].description}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        ...
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
                     </div>
                 </div>
 
@@ -66,7 +89,7 @@ function loadDataNew() {
                 `
 
             });
-
+             console.log(data)
             data.innerHTML = output;
       })
         .catch(function(err) {
