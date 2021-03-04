@@ -17,7 +17,6 @@ async function sendRequest(){
     let queryStr = search.value.trim();
     let request = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${queryStr}`);
     let data =  await request.json();
-    console.log(data)
     let d = data.collection.items;
     return d;
 }
@@ -89,31 +88,12 @@ function loadDataNew() {
                 `
 
             });
-             console.log(data)
             data.innerHTML = output;
       })
         .catch(function(err) {
             console.log(err);
         });
     }
-            
-//             output += `
-//             <div class="col-6">
-//             <div class="card" style="width: 18rem;">
-//                 <div class="card-body">
-//                   <img src=" ${x.links[0].href}">
-//                   <h2 class="card-title">${x.data[0].title}</h2>
-
-//                   <h5 class="card-title">${x.data[0].description}</h5>
-
-//                   <a href="#" class="btn btn-primary">Go somewhere</a>
-//                 </div>
-//               </div>
-//         </div>    
-// `
-  
-
-
 // function load_fromPlaceHolder() {
 //     var apiSource = "https://api.nasa.gov/planetary/apod?api_key=weAlGOG143bhhKcNAnzlIo64MUoJwLy9GcD17J9K"
 
