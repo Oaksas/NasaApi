@@ -13,7 +13,7 @@ const searchBtn = document.getElementById('searchBtn');
 searchBtn.addEventListener('click',loadDataNew);
 
 async function sendRequest(){
-    let api_key = "weAlGOG143bhhKcNAnzlIo64MUoJwLy9GcD17J9K";
+    let api_key = "bxbWdtmV4adc36NiJepPjZ2pErUguI3zf7Sb3MgZ";
     let queryStr = search.value.trim();
     let request = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${queryStr}`);
     let data =  await request.json();
