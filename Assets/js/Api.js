@@ -3,22 +3,62 @@ const titleView = document.getElementById("titleView")
 const descriptionView = document.getElementById("descriptionView")
 const data = document.getElementById('data');
 
+const db = new Localbase('db');
+
 const search = document.getElementById('search');
 const searchBtn = document.getElementById('searchBtn');
 
-// searchBtn.addEventListener('click', ()=>{
-//     console.log("what is you name")
-// })
 
-searchBtn.addEventListener('click',loadDataNew);
+const recentView = document.getElementById('recentView');
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    displayFromDB();
+
+    searchBtn.addEventListener('click',loadDataNew);
+
+    
+});
+
 
 async function sendRequest(){
-    let api_key = "bxbWdtmV4adc36NiJepPjZ2pErUguI3zf7Sb3MgZ";
+    // let api_key = "weAlGOG143bhhKcNAnzlIo64MUoJwLy9GcD17J9K";
     let queryStr = search.value.trim();
+
     let request = await fetch(`https://images-api.nasa.gov/search?media_type=image&q=${queryStr}`);
-    let data =  await request.json();
+    let data= await  request.json();
     let d = data.collection.items;
+    addToDB(queryStr)
+
     return d;
+}
+
+
+function addToDB(query){
+    db.collection('recent').add({
+        query: query,
+      
+      })
+}
+function displayFromDB(){
+       recentView.innerHTML =""
+// db.collection('users').doc({ id: 1 }).get().then(document => {
+//   console.log(document)
+// })
+
+       db.collection('recent').orderBy('query').get().then(recent => {
+      recent1 = ""
+       recent.forEach( query =>  {
+       recent1 += `<a  href="#"><h3 class="text-white"><img src="https://img.icons8.com/officel/16/000000/planet.png"/> ${query.query}</h3></a> `
+    });
+    ;
+    recentView.innerHTML =recent1
+
+
+    
+      })
 }
 
 function loadDataNew() {
@@ -26,74 +66,74 @@ function loadDataNew() {
         function(posts) {
         //iterate over each post [100 posts]
         let output = " ";
+    
         posts.forEach(x => {
-            output += ` 
-            <div class="row mt-4 pb-3" >
-                <div class="col-lg-3 col-md-12 ">
-                    <div class="card" style="width: 18rem;">
-                        <img src="${x.links[0].href}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <h5 class="card-title">${x.data[0].title}</h5>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
-                        Description
-                        </a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong${x.data[0].nasa_id}">
-                            Description
-                        </button>
-                        <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
-                        ${x.data[0].description}
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="exampleModalLong${x.data[0].description}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                        ...
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+output += `  
 
-                <div class="col-1"></div>
-                <div class="col-lg-3 col-md-6 col-sm-12 ">
-                    <div class="card" style="width: 18rem;">
-                        <img src="${x.links[0].href}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                        <h5 class="card-title">${x.data[0].title}</h5>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
+<div class="col-2 col-lg-3"></div>
+        <div class="col-lg-8">
+          <div class="row mt-4 container " >
+          
+            <div class="col-lg-10 col-md-12 ">
+              <div class="card " >
+               <a href="description.html?href=${x.links[0].href}&title=${x.data[0].title}&description=${x.data[0].description}"> <img src="${x.links[0].href}"  id="imgView" class="card-img-top p-3" alt="Result"></a>
+                <div class="card-body">
+                    <h5 class="card-title">${x.data[0].title}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
                         Description
-                        </a>
-                        <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
+                      </a>
+                      <div class="collapse" id="${x.data[0].nasa_id}">
                         ${x.data[0].description}
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                
-                
-                
-                `
+                            </div>
+                      
+                                      </div>
 
-            });
-            data.innerHTML = output;
-      })
-        .catch(function(err) {
-            console.log(err);
+                </div>
+            </div>
+            
+            
+            </div>
+            
+
+        </div>
+
+
+
+        `
+
+
+            
+            console.log(x);
+
+            
+//             output += `
+//             <div class="col-6">
+//             <div class="card" style="width: 18rem;">
+//                 <div class="card-body">
+//                   <img src=" ${x.links[0].href}">
+//                   <h2 class="card-title">${x.data[0].title}</h2>
+
+//                   <h5 class="card-title">${x.data[0].description}</h5>
+
+//                   <a href="#" class="btn btn-primary">Go somewhere</a>
+//                 </div>
+//               </div>
+//         </div>    
+// `
         });
-    }
+
+        data.innerHTML = output;
+        displayFromDB();
+
+  })
+    .catch(function(err) {
+        console.log(err);
+    });
+
+}
+
+
 // function load_fromPlaceHolder() {
 //     var apiSource = "https://api.nasa.gov/planetary/apod?api_key=weAlGOG143bhhKcNAnzlIo64MUoJwLy9GcD17J9K"
 

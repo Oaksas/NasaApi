@@ -34,72 +34,28 @@
     <button class="btn btn-warning " type="submit" id="searchBtn"><img src="https://img.icons8.com/metro/26/000000/search.png"/></button>
 </div>
 </div>
-
-
        
+      </nav>
+<div class="container">
+    <div class="row" >
         
-        <!-- Links -->
-           
-      </nav>
-      <div class="row container-fluid">         <div class="col-12 text-center text-warning display-5">Search Results</div>
-    </div>
-       <div class="container-fluid row  " id="data">
+        <div class="col-12 display-6 text-white  shadow my-5 text-warning" id="imgTitle">
+            Name
+        </div>
 
-<div class="col-2"></div>
-        <div class="col-lg-8">
-          <div class="row mt-4 container " >
+        <div class="col-6">
+            <img src="Assets/Images/logoM.png" class="img-fluid card" id ="imgSent" alt="Result">
+        </div>
           
-            <div class="col-lg-10 col-md-12 ">
-              <div class="card " >
-                <img src="Assets/Images/logoM.png" id="imgView" class="card-img-top p-3" alt="Result">
-                <div class="card-body">
-                    <h5 class="card-title">${x.data[0].title}</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample${x.data[0].nasa_id}" role="button" aria-expanded="false" >
-                        Description
-                      </a>
-                      <div class="collapse" id="collapseExample${x.data[0].nasa_id}">
-                        ${x.data[0].description}
-                            </div>
-                      
-                                      </div>
-
-                </div>
-            </div>
-            <div class="col-1"></div>
-            
-            
-            </div>
-            
-
+        <div class="col-6 display-6 text-white" id="imgDescription">
+            Description
         </div>
 
-        <div class="col-lg-2 d-none d-lg-block d-md-none d-sm-none mt-sm-4 history ">
-          <h3 class="text-warning"> Recent Searches</h3>
+    
+    </div>
 
-          <ul class="list-group " id="recentView">
-            <li class="list-group-item">Cras justo odio</li>
-   
-          </ul>
-
-        </div>
-
-       </div>
-
-
-  <!-- <div class="container text-center">
-    <nav class="navbar navbar-light bg-light justify-content-between mb-5 pb-5">
-        <a class="navbar-brand "><img class="img-circle img-responsive img-fluid" src="Assets/Images/logoMain.jpg" alt=""  width="100px"></a>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </nav>
-      
-
-</div> -->
-
-
+ 
+</div>      
 
 <div class="mt-5 pt-5 pb-5 footer">
     <div class="container">
@@ -128,8 +84,7 @@
     </div>
 
 
-  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
-
-<script src="Assets/js/Api.js"></script>
+    
+<script src="Assets/js/des.js"></script>
 </body>
 </html>
